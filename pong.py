@@ -9,7 +9,7 @@ def main():
     pygame.display.set_caption('Pong Pygame')
 
     purple = (192,122,209)
-    white = (0,0,0)
+    white = (0, 0, 0)
 
     velocidad = 2
 
