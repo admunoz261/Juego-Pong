@@ -11,7 +11,6 @@ def main():
     Código de la pelota
     #--------------------------
 
-
     pelota = (255, 255, 255)
     fondo = (128, 128, 128)
 
