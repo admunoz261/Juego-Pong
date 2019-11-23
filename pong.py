@@ -8,7 +8,7 @@ def main():
     pygame.display.set_caption('Pong Pygame')
 
     #----------Pelota----------
-    Código de la pelota
+    #Código de la pelota
     #--------------------------
 
     pelota = (255, 255, 255)
