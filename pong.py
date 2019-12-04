@@ -36,6 +36,15 @@ def main():
                         posy1 = posy1 - 4
                     elif event.key == pygame.K_DOWN:
                         posy1 = posy1 + 4
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_LEFT:
+                        posx2 = posx2 - 4
+                    elif event.key == pygame.K_RIGHT:
+                        posx2 = posx2 + 4
+                    elif event.key == pygame.K_UP:
+                        posy2 = posy2 - 4
+                    elif event.key == pygame.K_DOWN:
+                        posy2 = posy2 + 4
 
         pygame.draw.rect(screen, purple , (posx1, posy1, 15, 100))
         pygame.draw.rect(screen, purple, (posx2, posy2, 15, 100))
