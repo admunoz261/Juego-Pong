@@ -16,15 +16,29 @@ def main():
     while 1:
 
         screen.fill(white)
-        posx = 30
-        posy = 180
-        pygame.draw.rect(screen, purple , (posx, posy, 15, 100))
-        pygame.draw.rect(screen, purple, (755, 100, 15, 100))
+        posx1 = 30
+        posy1 = 140
+
+        posx2 = 755
+        posy2 = 140
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys(exit)
+
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_LEFT:
+                        posx1 = posx1 - 4
+                    elif event.key == pygame.K_RIGHT:
+                        posx1 = posx1 + 4
+                    elif event.key == pygame.K_UP:
+                        posy1 = posy1 - 4
+                    elif event.key == pygame.K_DOWN:
+                        posy1 = posy1 + 4
+
+        pygame.draw.rect(screen, purple , (posx1, posy1, 15, 100))
+        pygame.draw.rect(screen, purple, (posx2, posy2, 15, 100))
 
         pygame.display.update()
 
