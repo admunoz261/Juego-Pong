@@ -1,6 +1,27 @@
 import os, sys, pygame
 from pygame.locals import *
 
+class Pad(pygame.sprite.Sprite):
+    def __init__(self, pos=(0, 0)):
+        pygame.sprite.Sprite.__init__(self)
+        self.image = pygame.Surface((12, 100)).convert()
+        self.image.fill((255, 255, 255))
+        self.rect = self.image.get_rect(center=pos)
+        self.max_speed = 5
+        self.speed = 0
+
+    def move_up(self):
+        self.speed = self.max_speed * -1
+
+    def move_down(self):
+        self.speed = self.max_speed * 1
+
+    def stop(self):
+        self.speed = 0
+
+    def update(self):
+        self.rect.move_ip(0, self.speed)
+
 def main():
     pygame.init()
 
@@ -8,48 +29,39 @@ def main():
     screen = pygame.display.set_mode(size)
     pygame.display.set_caption('Pong Pygame')
 
-    purple = (192,122,209)
-    white = (0, 0, 0)
+    pad_left = Pad((30, 300))
+    pad_right = Pad((770, 300))
 
-    velocidad = 2
+    sprites = pygame.sprite.Group(pad_left, pad_right)
+
+    clock = pygame.time.Clock()
+    fps = 60
+
+    pygame.key.set_repeat(1, 16)
 
     while 1:
+        clock.tick(fps)
 
-        screen.fill(white)
-        posx1 = 30
-        posy1 = 140
-
-        posx2 = 755
-        posy2 = 140
+        pad_left.stop()
+        pad_right.stop()
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()
-                sys(exit)
+            elif event.type == pygame.KEYDOWN and event.key == pygame.K_w:
+                pad_left.move_up()
+            elif event.type == pygame.KEYDOWN and event.key == pygame.K_s:
+                pad_left.move_down()
+            elif event.type == pygame.KEYDOWN and event.key == pygame.K_UP:
+                pad_right.move_up()
+            elif event.type == pygame.KEYDOWN and event.key == pygame.K_DOWN:
+                pad_right.move_down()
 
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_LEFT:
-                        posx1 = posx1 - 4
-                    elif event.key == pygame.K_RIGHT:
-                        posx1 = posx1 + 4
-                    elif event.key == pygame.K_UP:
-                        posy1 = posy1 - 4
-                    elif event.key == pygame.K_DOWN:
-                        posy1 = posy1 + 4
-                if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_LEFT:
-                        posx2 = posx2 - 4
-                    elif event.key == pygame.K_RIGHT:
-                        posx2 = posx2 + 4
-                    elif event.key == pygame.K_UP:
-                        posy2 = posy2 - 4
-                    elif event.key == pygame.K_DOWN:
-                        posy2 = posy2 + 4
+        sprites.update()
 
-        pygame.draw.rect(screen, purple , (posx1, posy1, 15, 100))
-        pygame.draw.rect(screen, purple, (posx2, posy2, 15, 100))
-
-        pygame.display.update()
+        sprites.draw(screen)
+        pygame.display.flip()
+        pygame.display.update() 
 
 if __name__ == '__main__':
     main()
