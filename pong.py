@@ -69,7 +69,12 @@ def main():
 
         sprites.update()
 
+        screen_rect = screen.get_rect().inflate(0, -28)
+        pad_left.rect.clamp_ip(screen_rect)
+        pad_right.rect.clamp_ip(screen_rect)
+
         screen.blit(background, (0, 0))
+
         sprites.draw(screen)
         pygame.display.flip()
         pygame.display.update() 
