@@ -29,6 +29,16 @@ def main():
     screen = pygame.display.set_mode(size)
     pygame.display.set_caption('Pong Pygame')
 
+    try:
+        filename = os.path.join(
+            os.path.dirname(__file__),
+            'background.png')
+        background = pygame.image.load(filename)
+        background = background.convert()
+    except pygame.error as e:
+        print ('Cannot load image: ', filename)
+        raise SystemExit(str(e))
+
     pad_left = Pad((30, 300))
     pad_right = Pad((770, 300))
 
@@ -59,6 +69,7 @@ def main():
 
         sprites.update()
 
+        screen.blit(background, (0, 0))
         sprites.draw(screen)
         pygame.display.flip()
         pygame.display.update() 
