@@ -6,7 +6,7 @@ class Pad(pygame.sprite.Sprite):
     def __init__(self, pos=(0, 0)):
         pygame.sprite.Sprite.__init__(self)
         self.image = pygame.Surface((12, 100)).convert()
-        self.image.fill((255, 255, 255))
+        self.image.fill((  100, 222, 246  ))
         self.rect = self.image.get_rect(center=pos)
         self.max_speed = 5
         self.speed = 0
