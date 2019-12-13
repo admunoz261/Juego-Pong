@@ -119,6 +119,9 @@ def main():
     right = pygame.Rect(width-5, 0, 5, height)
 
 
+    blanco = (120,216,235)
+
+
     while 1:
         try:
             filename = os.path.join(
